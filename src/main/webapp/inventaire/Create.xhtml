@@ -8,15 +8,30 @@
 
     <ui:composition>
 
-        <p:dialog id="InventaireCreateDlg" widgetVar="InventaireCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInventaireTitle}">
+            <p:dialog id="InventaireCreateDlg" widgetVar="InventaireCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInventaireTitle}">
             <h:form id="InventaireCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventaireController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateInventaireLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{inventaireController.selected.id}" title="#{bundle.CreateInventaireTitle_id}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{inventaireController.create}" value="#{bundle.Save}" update="display,:InventaireListForm:datalist,:growl" oncomplete="handleSubmit(args,'InventaireCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="InventaireCreateDialog.hide()"/>
+                        <p:outputLabel value="Date inventaire" for="dateInvent" />
+                        <p:calendar id="dateInvent" pattern="MM/dd/yyyy" value="#{inventaireController.selected.dateInvent}" title="#{bundle.EditCommandeTitle_datecommande}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCommandeLabel_magasin}" for="magasin" />
+                        <p:selectOneMenu id="magasin" value="#{inventaireController.selected.magasin}" >
+                            <f:selectItems value="#{magasinController.itemsAvailableSelectOne}"
+                                           var="magasinItem"
+                                           itemValue="#{magasinItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="stock" for="stock" />
+                        <p:selectOneMenu id="stock" value="#{inventaireController.selected.stock}">
+                            <f:selectItems value="#{stockController.itemsAvailableSelectOne}"
+                                           var="stockItem"
+                                           itemValue="#{stockItem}"/>
+                        </p:selectOneMenu>
+                         <p:outputLabel value="description" for="descri" />
+                         <p:inputText id="descri" value="#{inventaireController.selected.descri}" title="decripstion" />
+                   
+                         </p:panelGrid>
+                    <p:commandButton actionListener="#{inventaireController.create}" value="#{bundle.Save}" update=":InventaireListForm" oncomplete="handleSubmit(args,'inventaireCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="inventaireCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

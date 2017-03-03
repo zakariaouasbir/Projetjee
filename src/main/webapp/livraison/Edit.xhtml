@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{livraisonController.selected != null}">
                         <p:outputLabel value="#{bundle.EditLivraisonLabel_date}" for="date" />
-                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{livraisonController.selected.date}" title="#{bundle.EditLivraisonTitle_date}"  showOn="button"/>
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{livraisonController.selected.datelivraison}" title="#{bundle.EditLivraisonTitle_date}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditLivraisonLabel_commande}" for="commande" />
                         <p:selectOneMenu id="commande" value="#{livraisonController.selected.commande}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

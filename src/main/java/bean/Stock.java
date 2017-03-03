@@ -92,7 +92,7 @@ public class Stock implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Stcok[ id=" + id + " ]";
+        return "" + id + "";
     }
     
 }

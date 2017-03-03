@@ -1,11 +1,13 @@
 package controler;
 
+import bean.Commande;
 import bean.Livraison;
 import controler.util.JsfUtil;
 import controler.util.JsfUtil.PersistAction;
 import service.LivraisonFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,10 +29,47 @@ public class LivraisonController implements Serializable {
     private service.LivraisonFacade ejbFacade;
     private List<Livraison> items = null;
     private Livraison selected;
+     private Date datemin;
+    private Date datemax;
+    private Commande commande;
+    
 
     public LivraisonController() {
     }
 
+    public LivraisonFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(LivraisonFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public Date getDatemin() {
+        return datemin;
+    }
+
+    public void setDatemin(Date datemin) {
+        this.datemin = datemin;
+    }
+
+    public Date getDatemax() {
+        return datemax;
+    }
+
+    public void setDatemax(Date datemax) {
+        this.datemax = datemax;
+    }
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
+
+    
     public Livraison getSelected() {
         return selected;
     }
@@ -54,7 +93,10 @@ public class LivraisonController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-
+public void Search()
+{
+    items=ejbFacade.search(commande,datemin,datemax);
+}
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LivraisonCreated"));
         if (!JsfUtil.isValidationFailed()) {

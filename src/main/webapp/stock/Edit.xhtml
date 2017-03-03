@@ -28,9 +28,7 @@
                                            var="magasinItem"
                                            itemValue="#{magasinItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditStockLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{stockController.selected.id}" title="#{bundle.EditStockTitle_id}" />
-                    </p:panelGrid>
+                         </p:panelGrid>
                     <p:commandButton actionListener="#{stockController.update}" value="#{bundle.Save}" update="display,:StockListForm:datalist,:growl" oncomplete="handleSubmit(args, 'StockEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="StockEditDialog.hide()"/>
                 </h:panelGroup>

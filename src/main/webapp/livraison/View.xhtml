@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{livraisonController.selected != null}">
                         <h:outputText value="#{bundle.ViewLivraisonLabel_date}"/>
-                        <h:outputText value="#{livraisonController.selected.date}" title="#{bundle.ViewLivraisonTitle_date}">
+                        <h:outputText value="#{livraisonController.selected.datelivraison}" title="#{bundle.ViewLivraisonTitle_date}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                         <h:outputText value="#{bundle.ViewLivraisonLabel_commande}"/>

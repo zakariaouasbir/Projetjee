@@ -37,8 +37,49 @@ public class Inventaire implements Serializable {
     @ManyToOne
     private Stock stock=null;
     private String descri;
+
+    public List<InventaireItem> getInventaireItems() {
+        return inventaireItems;
+    }
+
+    public void setInventaireItems(List<InventaireItem> inventaireItems) {
+        this.inventaireItems = inventaireItems;
+    }
+
+    public Date getDateInvent() {
+        return dateInvent;
+    }
+
+    public void setDateInvent(Date dateInvent) {
+        this.dateInvent = dateInvent;
+    }
+
+    public Magasin getMagasin() {
+        return magasin;
+    }
+
+    public void setMagasin(Magasin magasin) {
+        this.magasin = magasin;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public String getDescri() {
+        return descri;
+    }
+
+    public void setDescri(String descri) {
+        this.descri = descri;
+    }
     
 
+   
     public int getId() {
         return id;
     }

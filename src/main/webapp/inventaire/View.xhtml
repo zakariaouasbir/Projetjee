@@ -4,18 +4,31 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
-        <p:dialog id="InventaireViewDlg" widgetVar="InventaireViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInventaireTitle}">
+           <p:dialog id="InventaireViewDlg" widgetVar="InventaireViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInventaireTitle}">
             <h:form id="InventaireViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{inventaireController.selected != null}">
-                        <h:outputText value="#{bundle.ViewInventaireLabel_id}"/>
-                        <h:outputText value="#{inventaireController.selected.id}" title="#{bundle.ViewInventaireTitle_id}"/>
+                        <h:outputText value="Date inventaire" />
+                        <h:outputText value="#{inventaireController.selected.dateInvent}" title="dateineventaire">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.CreateCommandeLabel_magasin}"/>
+                        <h:outputText value="#{inventaireController.selected.magasin}" title="#{bundle.ViewCommandeTitle_magasin}"/>
+                        <h:outputText value="stock"/>
+                        <h:outputText value="#{inventaireController.selected.stock}" title="Stock"/>
+                        <h:outputText value="description"/>
+                        <h:outputText value="#{inventaireController.selected.id}" title="id"/>
+                        
+                    
+                    
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="InventaireViewDialog.hide()"/>
+                    
+                    <p:commandButton value="#{bundle.Close}" onclick="CommandeViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

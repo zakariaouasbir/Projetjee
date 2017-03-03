@@ -28,8 +28,8 @@ public class Livraison implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date date;
+    @Temporal(javax.persistence.TemporalType.DATE)
+        private Date datelivraison;
     @ManyToOne
     private Commande commande;
     @OneToMany(mappedBy = "livraison")
@@ -47,12 +47,12 @@ public class Livraison implements Serializable {
     }
     
 
-    public Date getDate() {
-        return date;
+    public Date getDatelivraison() {
+        return datelivraison;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDatelivraison(Date datelivraison) {
+        this.datelivraison = datelivraison;
     }
 
     public Commande getCommande() {

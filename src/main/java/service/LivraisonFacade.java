@@ -5,7 +5,11 @@
  */
 package service;
 
+import bean.Commande;
 import bean.Livraison;
+import controler.util.SearchUtil;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +32,13 @@ public class LivraisonFacade extends AbstractFacade<Livraison> {
     public LivraisonFacade() {
         super(Livraison.class);
     }
+     public List<Livraison> search(Commande commande,Date datemin,Date datemax)
+    {
+        String requette="SELECT l FROM Livraison l WHERE 1=1 ";
+    requette+=SearchUtil.addConstraintMinMaxDate("l","datelivraison",datemin,datemax);
+    
+  return em.createQuery(requette).getResultList();
+}
+   
     
 }
