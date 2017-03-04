@@ -25,12 +25,12 @@
                          <p:outputLabel value="Commande id"  for="commande" />
                          <p:selectOneMenu id="commande" value="#{livraisonController.commande}" >
                                  <f:selectItem value="#{null}" itemLabel="--SELECT--"></f:selectItem>
-                                   <f:selectItems value="#{livraisonController.itemsAvailableSelectOne}"
+                                 <f:selectItems value="#{commandeController.itemsAvailableSelectOne}"
                                            var="commandeItem" 
                                            itemValue="#{commandeItem}" /> 
                              </p:selectOneMenu>       
                             </p:panelGrid>
-                <p:commandButton action="#{livraisonController.Search}" value="search" update="datalist"/>
+                <p:commandButton action="#{livraisonController.Search()}" value="search" update="datalist"/>
                 
                   <p:panel header="Resultat de recherche">
                     <p:dataTable id="datalist" value="#{livraisonController.items}" var="item"

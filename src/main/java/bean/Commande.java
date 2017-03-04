@@ -113,7 +113,7 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Commande[ id=" + id + " ]";
+        return ""+id+"";
     }
     
 }

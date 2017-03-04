@@ -36,7 +36,7 @@ public class LivraisonFacade extends AbstractFacade<Livraison> {
     {
         String requette="SELECT l FROM Livraison l WHERE 1=1 ";
     requette+=SearchUtil.addConstraintMinMaxDate("l","datelivraison",datemin,datemax);
-    
+    requette+=SearchUtil.addConstraint("l", "commande.id", "=", commande.getId());
   return em.createQuery(requette).getResultList();
 }
    

@@ -79,7 +79,7 @@ public class Fournisseur implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Fournisseur[ id=" + id + " ]";
+        return ""+id+"";
     }
     
 }

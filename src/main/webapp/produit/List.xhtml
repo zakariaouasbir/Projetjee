@@ -13,7 +13,8 @@
             <h:outputText value="#{bundle.ListProduitTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        
+             <ui:define name="body">
             <h:form id="ProduitListForm">
                 <p:panel header="#{bundle.ListProduitTitle}">
                     <p:dataTable id="datalist" value="#{produitController.items}" var="item"
@@ -64,13 +65,13 @@
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{produitController.destroy}" update=":growl,datalist" disabled="#{empty produitController.selected}"/>
                         </f:facet>
                     </p:dataTable>
+                
                 </p:panel>
             </h:form>
-
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
-        </ui:define>
+             </ui:define>
     </ui:composition>
 
 </html>

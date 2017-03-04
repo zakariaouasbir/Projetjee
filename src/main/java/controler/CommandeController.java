@@ -1,11 +1,14 @@
 package controler;
 
 import bean.Commande;
+import bean.Fournisseur;
+import bean.Magasin;
 import controler.util.JsfUtil;
 import controler.util.JsfUtil.PersistAction;
 import service.CommandeFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,9 +30,58 @@ public class CommandeController implements Serializable {
     private service.CommandeFacade ejbFacade;
     private List<Commande> items = null;
     private Commande selected;
+    private Fournisseur fournisseur;
+    private Magasin magasin;
+    private Date datemin;
+    private Date datemax;
+   
+    
 
     public CommandeController() {
     }
+
+    public CommandeFacade getEjbFacade() {
+        return ejbFacade;
+    }
+
+    public void setEjbFacade(CommandeFacade ejbFacade) {
+        this.ejbFacade = ejbFacade;
+    }
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
+
+    public Magasin getMagasin() {
+        return magasin;
+    }
+
+    public void setMagasin(Magasin magasin) {
+        this.magasin = magasin;
+    }
+
+    public Date getDatemin() {
+        return datemin;
+    }
+
+    public void setDatemin(Date datemin) {
+        this.datemin = datemin;
+    }
+
+    public Date getDatemax() {
+        return datemax;
+    }
+
+    public void setDatemax(Date datemax) {
+        this.datemax = datemax;
+    }
+
+   
+    
 
     public Commande getSelected() {
         return selected;
@@ -61,7 +113,15 @@ public class CommandeController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+    //findallitems
+    
 
+    
+    //recherche
+       public void Search()
+{
+    items=ejbFacade.search(magasin,fournisseur,datemin,datemax);
+}
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("CommandeUpdated"));
     }
