@@ -59,18 +59,27 @@
                             <h:outputText value="#{item.id}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{produitController.prepareCreate}" update=":ProduitCreateForm" oncomplete="PF('ProduitCreateDialog').show()"/>
+                            <p:commandButton id="createButton"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{produitController.prepareCreate}" update=":ProduitCreateForm  " oncomplete="PF('ProduitCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProduitViewForm" oncomplete="PF('ProduitViewDialog').show()" disabled="#{empty produitController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProduitEditForm" oncomplete="PF('ProduitEditDialog').show()" disabled="#{empty produitController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{produitController.destroy}" update=":growl,datalist" disabled="#{empty produitController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{produitController.destroy}" update=":growl,datalist,,:graph" disabled="#{empty produitController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 
                 </p:panel>
+                
             </h:form>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <h:form id="graph">
+                
+                <p:panel > 
+                    <p:chart type="pie" model="#{graph.pie}"   
+                              />
+                </p:panel>
+            </h:form>
+                  
              </ui:define>
     </ui:composition>
 

@@ -16,29 +16,13 @@
         <ui:define name="body">
            
             <h:form id="ProduitListsearch">
-                  
-                <p:panelGrid columns="2" >
-                   
-                    <p:outputLabel value="Quantite Maximale" for="qtemax" />
-                    <p:inputText id="qtemax" value="#{produitController.qtemax}" title="#{bundle.searchProduitTitle_qtemax}" />
-                            <p:outputLabel value="Quantite Minimale" for="qtemin" />
-                         <p:inputText id="qtemin" value="#{produitController.qtemin}" title="#{bundle.searchProduitTitle_qtemin}" />
-                         <p:outputLabel value="Prix Maximale" for="prixMax" />
-                          <p:inputText id="prixMax" value="#{produitController.prixMax}" title="#{bundle.CreateProduitTitle_prix}" />
-                          <p:outputLabel value="prix minimale" for="prixMin" />
-                          <p:inputText id="prixMin" value="#{produitController.prixMin}" title="#{bundle.CreateProduitTitle_prix}" />
-                                           </p:panelGrid>
-                <p:commandButton action="#{produitController.Search()}" value="search " update="datalist"/>
-                  
-                       
-                       
-                        <p:panel header="Search result">
-                            <p:dataTable id="datalist" value="#{produitController.items}" var="item"
+                <p:panel header="Search result">
+                    <p:dataTable id="datalist" value="#{produitController.items}" var="item"
                                  selectionMode="single" 
                                  paginator="true"
                                  rowKey="#{item.id}"
                                  rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 rowsPerPageTemplate="5,10,15,30,50"
                                  >
 
                         
@@ -69,15 +53,22 @@
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProduitTitle_id}"/>
+                               
+               
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
-                        
-                    </p:dataTable>
+                                <f:facet name="footer">
+                            <p:commandButton id="searchbutton"  icon="ui-icon-plus"   value="Search"  update=":ProduitSearchForm  " oncomplete="PF('ProduitSearchDialog').show()"/>
+                              </f:facet>
+                
+                             </p:dataTable>
                 </p:panel>
                 
             </h:form>
-
+             
+ <ui:include src="searchdialog.xhtml"/>
+          
             
         </ui:define>
     </ui:composition>

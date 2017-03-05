@@ -25,7 +25,7 @@ public class ProduitController implements Serializable {
 
     @EJB
     private service.ProduitFacade ejbFacade;
-    private List<Produit> items = null;
+    private List<Produit> items;
     private Produit selected;
      private String categorie;
     private Produit produit;
@@ -117,7 +117,12 @@ public class ProduitController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-
+     public List<Produit> prepareCreate1() {
+       if(items==null)
+           return ejbFacade.findAll();
+       else 
+           return items;
+    }
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProduitCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -132,6 +137,7 @@ public class ProduitController implements Serializable {
     public void Search()
     {
         items=ejbFacade.search(produit, prixMin, prixMax, qtemin, qtemax);
+        
     }
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ProduitDeleted"));
@@ -142,9 +148,8 @@ public class ProduitController implements Serializable {
     }
 
     public List<Produit> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        if (items == null) 
+            items = ejbFacade.findAll();
         return items;
     }
 
